@@ -61,7 +61,7 @@
 				returnDate: returnDate,
 				oneWay: oneWayChecked
 			},
-			url: window.location.protocol+ '//' + window.location.host + '/flight/queryflights',
+			url: 'https://acmeair-flightservice-default.apps.m13lp49ocp.lnxne.boe/flight/queryflights',
 			handleAs: "json",
 			load: function(response, ioArgs) {
 				if (response.tripFlights.length == 0) {
@@ -236,7 +236,7 @@
 		
 		dojo.xhrPost({
 			content : xhrContent,
-			url: window.location.protocol+ '//' + window.location.host + '/booking/bookflights',
+			url: 'https://acmeair-bookingservice-default.apps.m13lp49ocp.lnxne.boe/booking/bookflights',
 			handleAs: "json",
 			headers: {
                           "Authorization" : "Bearer " + dojo.cookie("Bearer")

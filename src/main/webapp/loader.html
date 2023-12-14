@@ -49,7 +49,7 @@
  
     function loadLoaderConfigData() {
     	dojo.xhrGet({
-			url: window.location.protocol+ '//' + window.location.host + '/customer/loader/query',
+			url: 'https://acmeair-customerservice-default.apps.m13lp49ocp.lnxne.boe/customer/loader/query',
 			handleAs: "text",
 			load: function(response, ioArgs) {
 				updateFormData(response);
@@ -60,7 +60,7 @@
 		});
     	
     	dojo.xhrGet({
-        url: window.location.protocol+ '//' + window.location.host + '/flight/loader/query',
+        url: 'https://acmeair-flightservice-default.apps.m13lp49ocp.lnxne.boe/flight/loader/query',
         handleAs: "text",
         load: function(response, ioArgs) {
             updateFlightFormData(response);
@@ -86,7 +86,7 @@
     		content : {
     			numCustomers: dijit.byId('customerSizeInput').value
     		},
-    		url: window.location.protocol+ '//' + window.location.host + '/customer/loader/load',
+    		url: 'https://acmeair-customerservice-default.apps.m13lp49ocp.lnxne.boe/customer/loader/load',
     		load: function(response, ioArgs) {
     			hideWaitDialog();
     			alert('Customer Database Loaded, response: ' + response);
@@ -104,7 +104,7 @@
     	  content : {
     	    daysToLoad: dijit.byId('flightDaysInput').value
           },
-    		url: window.location.protocol+ '//' + window.location.host + '/flight/loader/load',
+    		url: 'https://acmeair-flightservice-default.apps.m13lp49ocp.lnxne.boe/flight/loader/load',
     		load: function(response, ioArgs) {
     			hideWaitDialog();
     			alert('Flight Database Loaded, response: ' + response);
@@ -120,7 +120,7 @@
     function clearBookingDB() {
     	showWaitDialog();
     	dojo.xhrGet({
-    		url: window.location.protocol+ '//' + window.location.host + '/booking/loader/load',
+    		url: 'https://acmeair-bookingservice-default.apps.m13lp49ocp.lnxne.boe/booking/loader/load',
     		load: function(response, ioArgs) {
     			hideWaitDialog();
     			alert('Booking Database Cleared, response: ' + response);

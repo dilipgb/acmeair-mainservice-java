@@ -57,7 +57,7 @@ function login() {
 			login: userString,
 			password: document.getElementById('password').value
 		},
-		url: window.location.protocol+ '//' + window.location.host + '/auth/login',
+		url: 'https://acmeair-authservice-default.apps.m13lp49ocp.lnxne.boe/auth/login',
 		load: function(response, ioArgs) {
 			hideLoginWaitDialog();
 			if (response != 'logged in') {
