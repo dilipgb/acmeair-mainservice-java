@@ -7,19 +7,19 @@ networks:
 services:
   acmeair-booking-db:
     container_name: acmeair-booking-db
-    image: docker.io/library/mongo:latest
+    image: mongo
     networks: 
       - my-net
 
   acmeair-customer-db:
     container_name: acmeair-customer-db
-    image: docker.io/library/mongo:latest
+    image: mongo
     networks: 
       - my-net
 
   acmeair-flight-db:
     container_name: acmeair-flight-db
-    image: docker.io/library/mongo:latest
+    image: mongo
     networks: 
       - my-net
 
@@ -33,7 +33,7 @@ services:
       - "80:80"
     volumes:
       - /www/public
-    volumes_from:
+    depends_on:
       - acmeair-mainservice-java
       - acmeair-authservice-java
       - acmeair-bookingservice-java
@@ -46,10 +46,10 @@ services:
       - my-net
     build: 
       context: ../acmeair-mainservice-java/
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile-daily
     environment:
       - LICENSE=accept
-    mem_limit: 1g
+    mem_limit: 512m
 
   acmeair-authservice-java:
     container_name: acmeair-authservice-java
@@ -57,7 +57,7 @@ services:
       - my-net
     build:
       context: ../acmeair-authservice-java/
-      dockerfile: Dockerfile-qn
+      dockerfile: Dockerfile-daily
     environment:
       - ACMEAIR_STACKAA_CUSTOMER_URL=http://acmeair-nginx1/customer
     mem_limit: 1g
@@ -68,9 +68,9 @@ services:
       - my-net
     build:
       context: ../acmeair-bookingservice-java/
-      dockerfile: Dockerfile-qn
+      dockerfile: Dockerfile-daily
     environment:
-      - QUARKUS_MONGODB_CONNECTION_STRING=mongodb://acmeair-booking-db:27017
+      - MONGO_HOST=acmeair-booking-db
       - ACMEAIR_STACKAA_AUTH_URL=http://acmeair-nginx1/auth
       - ACMEAIR_STACKAA_CUSTOMER_URL=http://acmeair-nginx1/customer
       - ACMEAIR_STACKAA_FLIGHT_URL=http://acmeair-nginx1/flight
@@ -84,9 +84,9 @@ services:
       - my-net
     build:
       context: ../acmeair-customerservice-java/
-      dockerfile: Dockerfile-qn
+      dockerfile: Dockerfile-daily
     environment:
-      - QUARKUS_MONGODB_CONNECTION_STRING=mongodb://acmeair-customer-db:27017
+      - MONGO_HOST=acmeair-customer-db
       - ACMEAIR_STACKAA_AUTH_URL=http://acmeair-nginx1/auth
     volumes_from:
       - acmeair-customer-db
@@ -98,9 +98,9 @@ services:
       - my-net
     build:
       context: ../acmeair-flightservice-java/
-      dockerfile: Dockerfile-qn
+      dockerfile: Dockerfile-daily
     environment:
-      - QUARKUS_MONGODB_CONNECTION_STRING=mongodb://acmeair-flight-db:27017
+      - MONGO_HOST=acmeair-flight-db
     volumes_from:
       - acmeair-flight-db
     mem_limit: 1g
