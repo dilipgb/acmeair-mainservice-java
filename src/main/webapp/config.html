@@ -50,7 +50,7 @@
     	var grid, store, dataStore;
     	
     	dojo.xhrGet({
-			url: window.location.protocol+ '//' + window.location.host + url1 + url2 + '/config/runtime',
+			url:  url1 + url2 + '/config/runtime',
 			handleAs: "json",
 			load: function(response, ioArgs) {
 				var theData = { items : response };
@@ -77,7 +77,7 @@
     	var grid, store, dataStore;
     	
     	dojo.xhrGet({
-			url: window.location.protocol+ '//' + window.location.host + url1 + url2 +'/config/activeDataService',
+			url: url1 + url2 +'/config/activeDataService',
 			handleAs: "text",
 			load: function(response, ioArgs) {	
 		    	document.getElementById('activeServiceLoc_'+service).innerHTML=response;		    	
@@ -94,7 +94,7 @@
     	var airportCodeMapping, booking, customer, customerSession, flight, flightSegment;
 
     	dojo.xhrGet({
-			url: window.location.protocol+ '//' + window.location.host + '/customer/config/countCustomers',
+			url: 'https://acmeair-customerservice-default.apps.m13lp49ocp.lnxne.boe/customer/config/countCustomers',
 			handleAs: "json",
 			load: function(response, ioArgs) {	
 		    	//alert("Response: " + response);
@@ -106,7 +106,7 @@
     	});
     	
        	dojo.xhrGet({
-			url: window.location.protocol+ '//' + window.location.host + '/flight/config/countFlights',
+			url: 'https://acmeair-flightservice-default.apps.m13lp49ocp.lnxne.boe/flight/config/countFlights',
 			handleAs: "json",
 			load: function(response, ioArgs) {			    	
 		    	document.getElementById('flightData').innerHTML=response;
@@ -117,7 +117,7 @@
     	});
 	 
        	dojo.xhrGet({
-			url: window.location.protocol+ '//' + window.location.host + '/flight/config/countFlightSegments',
+			url: 'https://acmeair-flightservice-default.apps.m13lp49ocp.lnxne.boe/flight/config/countFlightSegments',
 			handleAs: "json",
 			load: function(response, ioArgs) {			    
 		    	document.getElementById('flightSegmentData').innerHTML=response;
@@ -129,7 +129,7 @@
        	
        	
     	dojo.xhrGet({
-			url: window.location.protocol+ '//' + window.location.host + '/booking/config/countBookings',
+			url: 'https://acmeair-bookingservice-default.apps.m13lp49ocp.lnxne.boe/booking/config/countBookings',
 			handleAs: "json",
 			load: function(response, ioArgs) {	
 		    	document.getElementById('bookingData').innerHTML=response;
@@ -141,7 +141,7 @@
     	
     	dojo.xhrGet({
     		
-			url: window.location.protocol+ '//' + window.location.host + '/flight/config/countAirports',
+			url: 'https://acmeair-flightservice-default.apps.m13lp49ocp.lnxne.boe/flight/config/countAirports',
 			handleAs: "json",
 			load: function(response, ioArgs) {	
 		    	document.getElementById('airportData').innerHTML=response;
@@ -242,14 +242,14 @@
           </table>
 			
 			<script type="text/javascript">
-				getRuntimeInformation('https://acmeair-authservice-default.apps.m13lp49ocp.lnxne.boe','/auth','');
+				getRuntimeInformation('auth','https://acmeair-authservice-default.apps.m13lp49ocp.lnxne.boe','/auth');
 				
-				getRuntimeInformation('https://acmeair-bookingservice-default.apps.m13lp49ocp.lnxne.boe','/booking','');
-				getActiveDataServiceInfo('https://acmeair-bookingservice-default.apps.m13lp49ocp.lnxne.boe','/booking','');
-				getRuntimeInformation('https://acmeair-customerservice-default.apps.m13lp49ocp.lnxne.boe','','/customer');
-				getActiveDataServiceInfo('https://acmeair-customerservice-default.apps.m13lp49ocp.lnxne.boe','','/customer');
-				getRuntimeInformation('https://acmeair-flightservice-default.apps.m13lp49ocp.lnxne.boe','/flight','');
-				getActiveDataServiceInfo('https://acmeair-flightservice-default.apps.m13lp49ocp.lnxne.boe','/flight','');
+				getRuntimeInformation('booking','https://acmeair-bookingservice-default.apps.m13lp49ocp.lnxne.boe','/booking');
+				getActiveDataServiceInfo('booking','https://acmeair-bookingservice-default.apps.m13lp49ocp.lnxne.boe','/booking');
+				getRuntimeInformation('customer','https://acmeair-customerservice-default.apps.m13lp49ocp.lnxne.boe','/customer');
+				getActiveDataServiceInfo('customer','https://acmeair-customerservice-default.apps.m13lp49ocp.lnxne.boe','/customer');
+				getRuntimeInformation('flight','https://acmeair-flightservice-default.apps.m13lp49ocp.lnxne.boe','/flight');
+				getActiveDataServiceInfo('flight','https://acmeair-flightservice-default.apps.m13lp49ocp.lnxne.boe','/flight');
 			</script>
 	
 			<h2>Auth Service </h2>	 
